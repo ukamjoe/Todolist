@@ -1,8 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import { data } from "./data";
-import { MdAdd } from "react-icons/md";
-
+import { Link } from "react-router-dom";
 
 const TodoList = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -113,40 +112,42 @@ const TodoList = () => {
   };
 
   return (
-    <div>
-      <div className="flex flex-col place items-center">
-        <h1 className="text"> Halftime</h1>
-        <div className="flex gap-10 mt-3">
+    <div className="container">
+        <div className="box">
+        <div className="text">
+        <h4>Halftime</h4> 
+        <small>..helping you focus on important events..</small>
+        </div>
+        <div className="flexing">
           <a
             href="/ErrorPage"
-            className="bg-blue-700 text-white p-2 rounded-[5px]">
-            404 Page
+            className="404">
+           <p>404 Page</p> 
           </a>
           <a
             href="/ErrorBoundary"
-            className="bg-blue-700 text-white p-2 rounded-[5px]">
-            Error Boundary
+            className="error">
+              <p>Error Boundary</p>
           </a>
         </div>
       </div>
 
       {/* Add New Todo Button */}
-      <div className="flex flex-row justify-center place-items-center mt-3">
+      <div className="new-task">
         <button onClick={() => setIsModalOpen(true)} className="text-1xl">
-          Add a New Task
+          Create <em>+</em>
         </button>
-        <MdAdd className="text-[#888]" />
       </div>
 
       {/* Modal for Adding New Todo */}
       {isModalOpen && (
-        <div
+        <div className="pop-up"
           style={{
             position: "fixed",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            backgroundColor: "white",
+            backgroundColor: "beige",
             padding: "20px",
             boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
             zIndex: 1000,
@@ -167,18 +168,18 @@ const TodoList = () => {
       )}
 
       {/* Search and Filter */}
-      <div className="flex flex-row justify-center gap-5">
+      <div className="search">
         <input
           type="text"
           placeholder="Search by title..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="border p-2 w-[50%] rounded-[10px] mt-3 outline-none shadow-md"
+          className="sea"
         />
         <select
           value={filterCompleted}
           onChange={(e) => setFilterCompleted(e.target.value)}
-          className="border bg-blue-700 text-white rounded-[10px] shadow-md p-2 h-10 mt-4">
+          className="filt">
           <option value="">All</option>
           <option value="true">Completed</option>
           <option value="false">Not Completed</option>
@@ -186,14 +187,15 @@ const TodoList = () => {
       </div>
 
       {/* Items List */}
-      <div className="mt-10 ml-5 mr-5">
+      <div className="mt-10">
         {loading ? (
           <div>Loading...</div>
         ) : currentItems.length > 0 ? (
+          
           currentItems.map((item) => (
-            <div key={item.id} className="mt-5 bg-white shadow-md p-3">
+            <div key={item.id} className="mt-5">
               {editingId === item.id ? (
-                <div>
+                <div className="searching">
                   <input
                     type="text"
                     value={editingTitle}
@@ -204,16 +206,18 @@ const TodoList = () => {
                   <button onClick={() => setEditingId(null)}>Cancel</button>
                 </div>
               ) : (
-                <div className="">
-                  <h3>{item.title}</h3>
+                <div className="content">
+                  <div className="sub-content">
+                  <h3> <Link to={`/todo/${item.id}`}>{item.title}</Link></h3> 
                   <p>{item.completed ? "Completed" : "Not Completed"}</p>
-                  <button onClick={() => toggleCompletion(item.id)} className="text-blue-700">
+                  </div>
+                  <button onClick={() => toggleCompletion(item.id)} className="marked">
                     {item.completed ? "Mark as Incomplete" : "Mark as Complete"}
                   </button>
-                  <button onClick={() => handleEdit(item.id, item.title)} className="bg-green-500 text-white p-2 rounded-[10px]">
+                  <button onClick={() => handleEdit(item.id, item.title)} className="edit">
                     Edit
                   </button>
-                  <button onClick={() => handleDelete(item.id)} className="bg-red-500 text-white p-2 rounded-[10px]">Delete</button>
+                  <button onClick={() => handleDelete(item.id)} className="delet">Delete</button>
                 </div>
               )}
             </div>
@@ -225,7 +229,7 @@ const TodoList = () => {
 
       {/* Pagination Controls */}
       {filteredItems.length > itemsPerPage && (
-        <div>
+        <div className="last">
           <button onClick={handlePrev} disabled={currentPage === 0}>
             Previous
           </button>
