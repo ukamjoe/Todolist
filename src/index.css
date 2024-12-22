@@ -293,3 +293,8 @@ MdAdd{
 .page{
   margin-left: 400px;
 }
+
+.page img{
+  width: 225px;
+  height: 225px;
+}
