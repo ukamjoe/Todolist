@@ -12,7 +12,7 @@ const TodoDetails = () => {
 
   if (!todo) {
     return (
-      <div className="container">
+      <div className="containers">
         <h2>Todo not found!</h2>
         <button onClick={() => navigate(-1)}>Back to Todo List</button>
       </div>
@@ -20,12 +20,12 @@ const TodoDetails = () => {
   }
 
   return (
-    <div className="container">
-      <div className="header">
+    <div className="contain">
+      <div className="headers">
         <h2>Todo Details</h2>
         <button onClick={() => navigate(-1)}>Back to Todo List</button>
       </div>
-      <div className="content">
+      <div className="contents">
         <h3>{todo.title}</h3>
         <p>
           <strong>Status:</strong>{" "}
