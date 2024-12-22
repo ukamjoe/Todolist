@@ -11,7 +11,6 @@ const ErrorPage = () => {
         alt="Jacky" 
         style={{ width: '225px', height: '225px', borderRadius: '50%', marginBottom: '20px' }} 
       />
-      
       {/* Error Message */}
       <h1 style={{ color: 'red', fontSize: '24px' }}>404 - Page Not Found</h1>
       <p style={{ color: 'gray', fontSize: '18px' }}>
