@@ -8,7 +8,7 @@ const TodoDetails = () => {
   const navigate = useNavigate(); // For navigating back to the todo list
 
   // Find the todo item by ID
-  const todo = data.find((item) => item.id === parseInt(id));
+  const todo = data.find((item) => item.className === parseInt(id));
 
   if (!todo) {
     return (
