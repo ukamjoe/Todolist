@@ -1,6 +1,6 @@
 import TodoList from "./Todolist.jsx";
 import { Route, Routes } from "react-router-dom";
-import ErrorPage from "./ErrorPage.jsx"
+import ErrorPage from "./Errorpage.jsx";
 import ErrorBoundary from "./ErrorBoundary.jsx";
 
 const App = () => {
